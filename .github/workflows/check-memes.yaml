@@ -1,0 +1,27 @@
+name: Test ConfigMap Image URLs
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths: ['k8s/**/config-map.yaml', 'test/**']
+  push:
+    branches: [ main ]
+    paths: ['k8s/**/config-map.yaml', 'test/**']
+
+defaults:
+  run:
+    shell: bash
+    working-directory: test
+
+jobs:
+  check-images:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - run: npm ci
+      - run: npm test

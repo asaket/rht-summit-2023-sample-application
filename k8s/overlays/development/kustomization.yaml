@@ -1,0 +1,8 @@
+bases:
+- ../../base
+
+commonLabels:
+  env: dev
+
+patchesStrategicMerge:
+- config-map.yaml

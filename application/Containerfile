@@ -1,0 +1,17 @@
+FROM registry.access.redhat.com/ubi8/nodejs-18-minimal
+
+WORKDIR /usr/src/app
+
+COPY --chown=1001:0 package*.json .
+
+RUN npm ci --omit=dev
+
+COPY --chown=1001:0 src/ .
+
+ENV NODE_ENV=production
+ENV HTTP_PORT=8080
+ENV HTTP_HOST=0.0.0.0
+
+EXPOSE 8080
+
+CMD ["node", "index.js"]

@@ -1,0 +1,18 @@
+bases:
+- ../../base
+
+commonLabels:
+  env: dev
+
+# Increase the base deployment replica count, and use a fixed image tag
+patches:
+  - target:
+      kind: Deployment
+      name: random-meme
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: quay.io/rhdevelopers/random-meme:sha-faad6ce
+      - op: replace
+        path: /spec/replicas
+        value: 5

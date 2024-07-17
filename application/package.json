@@ -1,0 +1,24 @@
+{
+  "name": "application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "private": true,
+  "author": "Evan Shortiss",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.16.1",
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "barelog": "^0.2.0",
+    "env-var": "^7.3.1",
+    "rxjs": "^7.8.1"
+  }
+}

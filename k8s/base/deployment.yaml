@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: random-meme
+  labels:
+    app: random-meme
+    app.openshift.io/runtime: nodejs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: random-meme
+  template:
+    metadata:
+      labels:
+        app: random-meme
+    spec:
+      volumes:
+        - name: images-volume
+          configMap:
+            name: images-json
+      containers:
+      - name: random-meme
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          periodSeconds: 5
+          initialDelaySeconds: 2
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          periodSeconds: 2
+          initialDelaySeconds: 2
+        image: quay.io/rhdevelopers/random-meme:latest
+        volumeMounts:
+          - name: images-volume
+            mountPath: /var/images/
+        env:
+          - name: IMAGES_JSON_FILEPATH
+            value: /var/images/images.json
+        resources:
+          requests:
+            cpu: 100m
+            memory: 64Mi
+          limits:
+            cpu: 200m
+            memory: 128Mi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
