@@ -3,8 +3,7 @@ data:
   images.json: |-
     [
       "https://i.imgflip.com/7jqevq.jpg",
-      "https://i.imgflip.com/7jqekl.jpg",
-      "https://i.imgflip.com/7jmwjs.jpg"
+      "https://i.pinimg.com/736x/46/9c/3f/469c3f02fea9cf0a7612b484beb4f5af.jpg"
     ]
 kind: ConfigMap
 metadata:
